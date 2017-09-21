@@ -29,7 +29,7 @@ az group create -n $RG_NAME -l $LOCATION -o json | tee -a $LOG_FILE
 # Create an App Service Plan
 echo ---------- >> $LOG_FILE
 echo App Service Plan >> $LOG_FILE
-az appservice plan create -n $PLAN_NAME -g $RG_NAME --is-linux --sku S1 -o json | tee -a $LOG_FILE
+az appservice plan create -n $PLAN_NAME -g $RG_NAME --is-linux --sku B1 -o json | tee -a $LOG_FILE
 
 # Create a Web App
 echo ---------- >> $LOG_FILE
