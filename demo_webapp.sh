@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# Creates a demo Web App for Containers
+#
+# Prerequisites:
+# build and push the demo app container image
+#   See src/app.py, Dockerfile and demo_build.sh
+# install Azure CLI 2.0:
+#   https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest
+# login:
+#   az login
+#   az account set --subscription <subscription name>
+
 set -x
 LOG_FILE=demo_webapp.log
 echo $(date) - $0 > $LOG_FILE
@@ -27,6 +38,7 @@ echo Resource Group >> $LOG_FILE
 az group create -n $RG_NAME -l $LOCATION -o json | tee -a $LOG_FILE
 
 # Create an App Service Plan
+# Only Basic or Standard are supported for Web App for Containers
 echo ---------- >> $LOG_FILE
 echo App Service Plan >> $LOG_FILE
 az appservice plan create -n $PLAN_NAME -g $RG_NAME --is-linux --sku B1 -o json | tee -a $LOG_FILE
